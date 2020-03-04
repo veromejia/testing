@@ -43,7 +43,7 @@ class DBStorage:
         for prescription in self.__session.query(Prescription).order_by(Prescription.id).all():
             print("{}: {}".format(prescription.id, prescription.medication))
         self.__session.close()
-   
+
     def all_task(self):
         #Session = sessionmaker(bind=self.__engine)
         #self.__session = Session()
@@ -56,7 +56,33 @@ class DBStorage:
         #self.__session = Session()
         for task_x_prescription in self.__session.query(Task_x_prescription).all():
             print("{}: {}".format(task_x_prescription.task_id, task_x_prescription.prescription_id))
-        self.__session.close()    
+        self.__session.close()
+
+     def add_patient(self, patient):
+        self.__session.add(patient)
+        self.__session.commit()
+
+    def add_patient(self, patient):
+        self.__session.add(patient)
+        self.__session.commit()
+
+    def add_prescription(self, prescription):
+        self.__session.add(prescription)
+        self.__session.commit()
+
+    def add_task(self, task):
+        self.__session.add(task)
+        self.__session.commit()
+
+    def add_task_x_prescription(self, task_x_prescription)
+        self.__session.add(task_x_prescription)
+        self.__session.commit()
+
+#new_patient= Patient(name="keiry", last_name="mejia", email='keiry@gmail.com', phone="415-444-444")
+#i = DBStorage().add_patient(new_patient)
+#new_prescription= Prescription(patient_id=3, medication="motrin", frequency="6hrs", start_dt="2020-02-27 10:10:10", end_dt="2020-03-07 10:10:10")
+#j= DBStorage().add_prescription(new_prescription)
+
 
 x = DBStorage().all_patients()
 y = DBStorage().all_prescription()
