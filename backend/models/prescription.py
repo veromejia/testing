@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """Class Prescription"""
-from patient import Base, Patient
+from backend.models.patient import Base, Patient
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
+
 
 class Prescription(Base):
     __tablename__ = 'prescription'
