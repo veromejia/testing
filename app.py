@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for,flash, redirect, request
 from forms.patientform import PatientForm
 from forms.prescriptionform import PrescriptionForm
 
@@ -37,10 +37,17 @@ def reminder():
     form = PrescriptionForm()
     form.getPatients()
 
+    #if form.validate_on_submit():
     if request.method == 'POST':
-        if form.validateForm():
+        isvalid, inputs = form.validateForm()
+        print(isvalid)
+        print(inputs) 
+        if isvalid:
             form.save()
             return redirect(url_for('home'))
+        else:
+            for input in inputs :
+                flash('Check the input {}, the value is invalid!'.format(input),'danger')
     return render_template('reminder.html', form=form)
 
 if "__name__" == "__main__":

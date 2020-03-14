@@ -12,7 +12,7 @@
     <div class="box">
       {{ form.hidden_tag() }}
       {{form.firstName.label()}}
-      {{ form.firstName() }}
+      {{ form.firstName(class="mycontrol") }}
 
 
       {{form.lastname.label()}}
@@ -24,7 +24,7 @@
 
       {{form.phone_no.label()}}
       {{ form.phone_no() }}
-      {{form.submit()}}
+      {{form.submit(class="btn")}}
     </div>
   </form>
 </body>

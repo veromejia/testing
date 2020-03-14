@@ -2,116 +2,141 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/static/styles/reminder.css">
-    <link rel="stylesheet" type="text/css" href="/static/styles/style.css">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href='static/styles/reminder.css'>
+
 </head>
 
 <body>
 
     <form action="" method='POST'>
-        {{ form.hidden_tag() }}
-        <div class="box">
-            <h1>
-                <font face="bradley hand" color="red">Recipient Reminder</font>
-            </h1>
-
-            <div class="form-group">
-                {{form.patients.label()}}
-                {% if form.patients.errors %}
-
-                <div class="invalid-feedback">
-                    {% for error in form.patients.errors %}
-                    <span>{{ error }}</span>
+        <div class="container">
+            {{ form.hidden_tag() }}
+            {% with messages = get_flashed_messages( with_categories = true ) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{message}}
+                    </div>
                     {% endfor %}
-                </div>
-                {% else %}
-                {{form.patients(class = "form-control")}}
                 {% endif %}
-            </div>
-
-            <br/><br />
-
-            <div class="form-group">
-                {{form.medication.label()}}
-                {% if form.medication.errors %}
-
-                <div class="invalid-feedback">
-                    {% for error in form.medication.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+            {% endwith %}
+            <form>
+                <h1>
+                    <font face="bradley hand" color="red">Recipient Reminder</font>
+                </h1>
+                <div class="form-group row d-flex justify-content-center">
+                    {{form.patients.label()}}
+                    {% if form.patients.errors %}
+                    <div class="col-sm-5">{{form.patients(class = "form-control")}}</div>
+                    <div class="invalid-feedback">
+                        {% for error in form.patients.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">{{form.patients(class = "form-control")}}</div>
+                    {% endif %}
                 </div>
-                {% else %}
-                {{form.medication(class = "form-control")}}
-                {% endif %}
 
-            </div>
+                <div class="form-group row d-flex justify-content-center">
+                    {{form.medication.label()}}
+                    {% if form.medication.errors %}
+                    <div class="col-sm-5">{{form.medication(class = "form-control")}}</div>
+                    <div class="invalid-feedback">
+                        {% for error in form.medication.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">{{form.medication(class = "form-control")}}</div>
+                    {% endif %}
 
-            <div class="form-group">
-                {{form.frequency.label()}}
-                {% if form.frequency.errors %}
-
-                <div class="invalid-feedback">
-                    {% for error in form.frequency.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
                 </div>
-                {% else %}
-                {{form.frequency(class = "form-control")}}
-                {% endif %}
+
+                <div class="form-group row d-flex justify-content-center">
+                    {{form.frequency.label()}}
+
+                    {% if form.frequency.errors %}
+                    <div class="col-sm-5">{{form.frequency(class = "form-control")}}</div>
+                    <div class="invalid-feedback">
+                        {% for error in form.frequency.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">{{form.frequency(class = "form-control")}}</div>
+                    {% endif %}
 
 
-            </div>
-
-            <div class="form-group">
-                {{form.start_dt.label()}}
-                {% if form.start_dt.errors %}
-
-                <div class="invalid-feedback">
-                    {% for error in form.start_dt.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
                 </div>
-                {% else %}
-                {{form.start_dt(class = "form-control")}}
-                {% endif %}
 
-            </div>
+                <div class="form-group row d-flex justify-content-center">
+                    {{form.start_dt.label()}}
+                    {% if form.start_dt.errors %}
 
-            <div class="form-group">
-                {{ form.end_dt.label() }}
-                {% if form.end_dt.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.start_dt.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">{{form.start_dt()}}</div>
+                    {% endif %}
 
-                <div class="invalid-feedback">
-                    {% for error in form.end_dt.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
                 </div>
-                {% else %}
-                {{form.end_dt(class = "form-control")}}
-                {% endif %}
+
+                <div class="form-group row d-flex justify-content-center">
+                    {{ form.end_dt.label() }}
+                    {% if form.end_dt.errors %}
+
+                    <div class="invalid-feedback">
+                        {% for error in form.end_dt.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">
+                        {{form.end_dt()}}
+                    </div>
+
+                    {% endif %}
 
 
-            </div>
-
-            <div class="form-group">
-                {{form.noti_type.label()}}
-                {% if form.noti_type.errors %}
-
-                <div class="invalid-feedback">
-                    {% for error in form.noti_type.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
                 </div>
-                {% else %}
-                {{form.noti_type(class = "form-control")}}
-                {% endif %}
-            </div>
 
-            {{form.submit}}
+                <div class="form-group row d-flex justify-content-center">
+                    {{form.noti_type.label()}}
+                    {% if form.noti_type.errors %}
 
+                    <div class="invalid-feedback">
+                        {% for error in form.noti_type.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-5">
+                        {{form.noti_type(class = "form-control")}}
+                    </div>
+                    {% endif %}
+                </div>
+
+                {{form.submit}}
+            </form>
         </div>
+
     </form>
 
 </body>

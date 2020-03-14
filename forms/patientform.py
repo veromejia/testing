@@ -21,7 +21,7 @@ class PatientForm(FlaskForm):
     phone_no = StringField(
         'Phone',
         validators=[DataRequired(), Length(min=2, max=20)],
-        render_kw={"placeholder": "XXX-XXX-XXXX"})
+        render_kw={"placeholder": "XXXXXXXXXX"})
     submit = SubmitField('CREATE')
 
     def save(self):
