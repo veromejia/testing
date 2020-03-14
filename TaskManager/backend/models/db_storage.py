@@ -7,21 +7,16 @@ from backend.models.task import Task
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 import json
-import os
-from pathlib import Path
-
 
 
 class DBStorage:
     """Class DBStorage"""
     __engine = None
     __session = None
-    path = '{}/TaskManager'.format(str(Path.home()))
-    propfile ='{}/db_properties.json'.format( path )
 
     def __init__(self):
         """Constructor"""
-        with open(self.propfile) as file:
+        with open('db_properties.json') as file:
             data = json.load(file)
 
             for prop in data['props']:
@@ -78,11 +73,6 @@ class DBStorage:
         new_taskPrescription = self.__session.query(Task_x_prescription).all()
         return new_taskPrescription
         self.__session.close()
-
-    def update_task_status(self,taskid,status):
-        query = self.__session.query(Task).filter(Task.id == taskid).all()
-        query[0].status = status;
-        self.__session.commit()
 
     def add_patient(self, patient):
         self.__session.add(patient)
