@@ -13,8 +13,8 @@ from pathlib import Path
 import smtplib, ssl
 import os
 
-account_sid = "ACc5816629da2f5a693a90ad6dfdb5685e"
-auth_token = "MyTwillioToken"
+account_sid = "sidtwilioacc"
+auth_token = "twiliotoken"
 client = Client(account_sid, auth_token)
 
 db = DBStorage()
@@ -53,7 +53,7 @@ for prescription in db.all_prescription():
             myfile.write(message)
             client.messages.create(
                 to = patient.phone,
-                from_ = "myTwilioPhone",
+                from_ = "mytwiliophonenumber",
                 body = "Don't forget take your {} every {} hours".format(prescription.medication,prescription.frequency)
             )
             message = "Message successfully sent to the patient: {} acces date:\n".format(patient.id,datetime.now())
