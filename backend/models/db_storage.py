@@ -4,7 +4,7 @@ from backend.models.patient import Base, Patient
 from backend.models.prescription import Prescription
 from backend.models.task_x_prescription import Task_x_prescription
 from backend.models.task import Task
-from sqlalchemy import create_engine, update
+from sqlalchemy import create_engine, update, and_, join, select
 from sqlalchemy.orm import sessionmaker
 import json
 
@@ -47,6 +47,16 @@ class DBStorage:
             Prescription).order_by(Prescription.id).all()
         self.__session.close()
         return new_prescription
+    
+    def prescriptionXpatientID(self, id):
+        prescriptions = Prescription()
+        try:
+            patient = self.__session.query(Patient).filter(Patient.id == id).one()
+            prescriptions = patient.prescriptions
+        except IndexError:
+            prescriptions = Prescriptions() 
+
+        return prescriptions
 
     def all_task(self):
         new_task = self.__session.query(Task).order_by(Task.id).all()
@@ -60,6 +70,15 @@ class DBStorage:
         query = self.__session.query(Task).filter(
             Task.task_command == command).all()
         return query
+
+    def taskByPrescriptions(self,prescriptionID):
+        records = []
+        j = join(Task, Task_x_prescription, Task.id == Task_x_prescription.task_id)
+        query = select([Task]).select_from(j).where(Task_x_prescription.prescription_id==prescriptionID)
+        result = self.__session.execute(query)
+        for row in result:
+            records.append(row)
+        return records
 
     def all_new_tasks(self):
         query = self.__session.query(Task).filter(Task.status == 'NEW0').all()
