@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField, validators
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FloatField, validators
 from wtforms.fields.html5 import DateField
 from datetime import datetime
 from wtforms.validators import DataRequired, Length, Email, EqualTo, NumberRange,InputRequired
@@ -11,7 +11,7 @@ from backend.models.prescription import Prescription
 class PrescriptionForm(FlaskForm):
     patients = SelectField('Patients', choices=[])
     medication = StringField('Medication',validators=[DataRequired(), Length(min=2, max=20)])
-    frequency = IntegerField( 'Frequency',validators=[InputRequired() ])
+    frequency = FloatField( 'Frequency',validators=[InputRequired() ])
     #frequency = StringField( 'Frequency',validators=[InputRequired(),  ])
     start_dt = DateField('Start Date')
     end_dt = DateField('End Date')
