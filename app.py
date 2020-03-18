@@ -8,8 +8,14 @@ app.config['SECRET_KEY'] = 'e045fd27f61b2a04b5edbb45fa1350045fe8eb10653be9631d42
 
 
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/home', methods=['POST', 'GET'])
+@app.route('/landingpage', methods=['POST', 'GET'])
 def home():
+    
+    return render_template("landingpage.html")
+
+
+@app.route('/welcome', methods=['POST', 'GET'])
+def welcome():
     if request.method == 'POST':
         if request.form['submit'] == 'ADD PATIENT':
             return redirect(url_for('recipient'))
@@ -19,15 +25,15 @@ def home():
         
         if request.form['submit'] == 'DASHBOARD':
             return redirect(url_for('dashboard'))
-        
     return render_template("welcome.html")
+    
 
 @app.route('/recipient', methods=['POST', 'GET'])
 def recipient():
     form = PatientForm()
     if form.validate_on_submit():
         form.save()
-        return redirect(url_for('home'))
+        return redirect(url_for('welcome'))
     return render_template('recipient.html', form=form)
 
 
@@ -43,7 +49,7 @@ def reminder():
         print(inputs) 
         if isvalid:
             form.save()
-            return redirect(url_for('home'))
+            return redirect(url_for('welcome'))
         else:
             for input in inputs :
                 flash('Check the input {}, the value is invalid!'.format(input),'danger')
@@ -63,5 +69,10 @@ def dashboard(patientID,taskID):
             tasks = form.getTasks(taskID)
     return render_template('dashboard.html',form=form, prescriptions=prescriptions,tasks=tasks)
 
-if "__name__" == "__main__":
+
+@app.route('/about', methods=['POST', 'GET'])
+def about():
+    return render_template('about.html')
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000)
