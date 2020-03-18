@@ -13,8 +13,8 @@ from pathlib import Path
 import smtplib, ssl
 import os
 
-account_sid = "ACdb400edb1defe505ec884c8e8649a247"
-auth_token = "24a136d5a0c5607057eb2ae4f0e6b0cb"
+account_sid = "mytwiliosid"
+auth_token = "mytwiliotoken"
 client = Client(account_sid, auth_token)
 
 db = DBStorage()
@@ -23,7 +23,7 @@ db = DBStorage()
 def sendmail(email,prescription,frequency):
     port = 465
     sender = 'medreminderapp431@gmail.com'
-    password = 'medreminder2020'
+    password = 'mypasswordemail'
     """print ('user:{} ,Pass: {}'.format(sender,password))"""
     recieve = email
     message = """
@@ -53,7 +53,7 @@ for prescription in db.all_prescription():
             myfile.write(message)
             client.messages.create(
                 to = patient.phone,
-                from_ = "12056516878",
+                from_ = "mytwiliophone",
                 body = "Don't forget take your {} every {} hours".format(prescription.medication,prescription.frequency)
             )
             message = "Message successfully sent to the patient: {} acces date:\n".format(patient.id,datetime.now())
