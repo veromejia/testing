@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-from crontab import CronTab 
+from crontab import CronTab
 
-cron = CronTab(user='nelson')
+cron = CronTab(user='vero')
 exist = False
 
 
 for item in cron:
     print(item)
-   
+
 print('Cleaning all crons.')
 cron.remove_all()
 cron.write()

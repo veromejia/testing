@@ -11,13 +11,12 @@ import os
 from pathlib import Path
 
 
-
 class DBStorage:
     """Class DBStorage"""
     __engine = None
     __session = None
     path = '{}/TaskManager'.format(str(Path.home()))
-    propfile ='{}/db_properties.json'.format( path )
+    propfile = '{}/db_properties.json'.format(path)
 
     def __init__(self):
         """Constructor"""
@@ -53,9 +52,9 @@ class DBStorage:
     def all_prescription(self):
         """to get all the prescription of the table prescription"""
         new_prescription = self.__session.query(
-        Prescription).order_by(Prescription.id).all()
+            Prescription).order_by(Prescription.id).all()
         self.__session.close()
-        return new_prescription      
+        return new_prescription
 
     def all_task(self):
         """ return all tasks in the task table"""
@@ -63,26 +62,28 @@ class DBStorage:
         return new_task
         self.__session.close()
 
-    def task_by_command(self,command):
+    def task_by_command(self, command):
         """return all task that have the same command """
-        query = self.__session.query(Task).filter(Task.task_command == command).all()
+        query = self.__session.query(Task).filter(
+            Task.task_command == command).all()
         return query
-       
+
     def all_new_tasks(self):
         """ return all the tasks with new status"""
         query = self.__session.query(Task).filter(Task.status == 'NEW0').all()
         return query
 
     def all_task_x_prescription(self):
-        """ return all the task per prescription of the task_x_prescription table"""
+        """ return all the tasks per prescription
+        the of task_x_prescription table"""
         new_taskPrescription = self.__session.query(Task_x_prescription).all()
         return new_taskPrescription
         self.__session.close()
 
-    def update_task_status(self,taskid,status):
+    def update_task_status(self, taskid, status):
         """ to update the status of a given task """
         query = self.__session.query(Task).filter(Task.id == taskid).all()
-        query[0].status = status;
+        query[0].status = status
         self.__session.commit()
 
     def add_patient(self, patient):
@@ -104,14 +105,3 @@ class DBStorage:
         """ to add a new task per prescription in the database"""
         self.__session.add(task_x_prescription)
         self.__session.commit()
-
-"""#new_patient= Patient(name="keiry", last_name="mejia", email='keiry@gmail.com', phone="415-444-444")
-#i = DBStorage().add_patient(new_patient)
-#new_prescription= Prescription(patient_id=1, medication="motrin", frequency="6hrs", start_dt="2020-02-27 10:10:10", end_dt="2020-03-07 10:10:10")
-#j= DBStorage().add_prescription(new_prescription)
-
-#x = DBStorage().all_patients()
-#y = DBStorage().all_prescription()
-#z = DBStorage().all_task_x_prescription()
-#zz = DBStorage().all_task()
-"""

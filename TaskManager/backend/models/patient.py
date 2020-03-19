@@ -6,7 +6,9 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+
 class Patient(Base):
+    """class that represent patient table"""
     __tablename__ = 'patient'
     id = Column(Integer, unique=True, nullable=False, primary_key=True)
     name = Column(String(60), nullable=False)

@@ -8,6 +8,7 @@ import uuid
 
 
 class Task(Base):
+    """class that represent task table"""
     __tablename__ = 'task'
     id = Column(Integer, unique=True, nullable=False, primary_key=True)
     task_command = Column(String(60), nullable=False)

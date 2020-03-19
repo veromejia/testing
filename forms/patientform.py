@@ -6,6 +6,7 @@ from backend.models.patient import Patient
 
 
 class PatientForm(FlaskForm):
+    """class to create the patient objects"""
     firstName = StringField(
         'First Name',
         validators=[DataRequired(), Length(min=2, max=20)],
@@ -25,6 +26,7 @@ class PatientForm(FlaskForm):
     submit = SubmitField('CREATE')
 
     def save(self):
+        """function to save the info getting from wtforms"""
         db = DBStorage()
         p = Patient()
         p.name = self.firstName.data
