@@ -6,12 +6,12 @@ Veronica's mother has diabetes and she continously asked Veronica to send a text
 ## Composition
 ### Tools
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/front-end.png" height="50%" width="50%"/>
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/front-end.png" height="70%" width="70%"/>
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/back-end.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/back-end.png" height="70%" width="70%"/>
 
-### Architecture
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Architecture.png" />
+## Architecture
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Architecture.png" height="70%" width="70%" />
 
 ## Requirements 📋
 MedReminder is a Web Application designed to send a reminder whenever there is an active alert for that. The reminder can be:
@@ -19,23 +19,17 @@ MedReminder is a Web Application designed to send a reminder whenever there is a
 1. A Text Message, which is sent through Twilio API. To run this project you will need to have a twilio trial account.
 2. An email which is sent using a gmail account
 
-_You should also install the following tools_
+You should also install the following tools
 
-`$ sudo apt-get install python3-venv`
+    `$ sudo apt-get install python3-venv`
+    `$ pip install Flask`
+    `$ pip intall Jinja2`
+    `$ sudo apt-get install mysql-server`
+    `$ pip install SQLAlchemy`
+    `$ pip install python-crontab`
+    `$ pip install twilio`
 
-`$ pip install Flask`
-
-`$ pip intall Jinja2`
-
-`$ sudo apt-get install mysql-server`
-
-`$ pip install SQLAlchemy`
-
-`$ pip install python-crontab`
-
-`$ pip install twilio`
-
-### CONFIGURATION
+## Configuration
 
 _after installing the above mentioned requirements_
 
@@ -43,43 +37,45 @@ _after installing the above mentioned requirements_
 * copy the folder TaskManager that is inside of med_reminder folder to the home directory
 * go to the python file Taskmanager/job.py that now is in your home directory and replace the values of the following varialbes `account_sid = "Mytwiliosid"`, `auth_token = "MytwilioToken"`, `from_="myTwilioPhoneNumber"`, `sender="myEmail@gmail.com"`, and `password ="​myEmailPassword"` with your own credentials. 
 
-### TESTING
+## Testing
 
-1- Run the Cron jobs
-* go to the directory TaskManager that previously was copied in your home directory and run the python file setup.py 
-`ex: ./setup.py
-~/TaskManager$ ./setup.py 
-The following cron's were created: 
-* * * * * python3 /home/vero/TaskManager/taskmanager.py # medr-taskmanager`
+#### 1- Run the Cron jobs
+* go to the directory TaskManager that previously was copied in your home directory and run the python file setup.py
 
-This script will create the crons that will be run every minute to check if there are active tasks to send a reminder
+    `ex:`
+    `~/TaskManager$ ./setup.py`
+    `The following cron's were created:`
+    `python3 /home/vero/TaskManager/taskmanager.py # medr-taskmanager`
 
-note: to stop the crons that are runing every minut run the python file `CleanCrons.py`
+    This script will create the crons that will be run every minute to check if there are active tasks to send a reminder
 
-2- Run the Web Application
+    #### note: to stop the crons that are runing every minut run the python file `CleanMyCrons.py`
+
+#### 2- Run the Web Application
+
 * Go to the folder MedReminder and run the following command `env FLASK_APP = app.py flask `
 
-### ex:
-`~/med_reminder$ env FLASK_APP = app.py flask
-Serving Flask app "app"
-Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
+    `ex:`
+    `~/med_reminder$ env FLASK_APP = app.py flask`
+    `Serving Flask app "app"`
+    `Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
 
-3- go to your favorite browser and type `localhost:5000` or `127.0.0.1:5000` to test this web application
+#### 3- go to your favorite browser and type `localhost:5000` or `127.0.0.1:5000` to test this web application
 
 ## Demo Features
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/landing%20page.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/landing%20page.png" height="70%" width="70%" />
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/About%20us.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/About%20us.png"height="70%" width="70%" />
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/features.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/features.png" height="70%" width="70%" />
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Demo%20page.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Demo%20page.png" height="70%" width="70%"/>
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Recipient%20info.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Recipient%20info.png" height="70%" width="70%"/>
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Reminder%20info.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Reminder%20info.png" height="70%" width="70%"/>
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Dashboard%20record.png" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Dashboard%20record.png" height="70%" width="70%"/>
 
 
 ## Authors
