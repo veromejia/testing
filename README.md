@@ -21,31 +21,41 @@ MedReminder is a Web Application designed to send a reminder whenever there is a
 
 You should also install the following tools
 
-    `$ sudo apt-get install python3-venv`
-    `$ pip install Flask`
-    `$ pip intall Jinja2`
-    `$ sudo apt-get install mysql-server`
-    `$ pip install SQLAlchemy`
-    `$ pip install python-crontab`
-    `$ pip install twilio`
+`$ sudo apt-get install python3-venv`
+
+`$ pip install Flask`
+
+`$ pip intall Jinja2`
+
+`$ sudo apt-get install mysql-server`
+
+`$ pip install SQLAlchemy`
+
+`$ pip install python-crontab`
+
+`$ pip install twilio`
 
 ## Configuration
 
-_after installing the above mentioned requirements_
+After installing the above mentioned requirements_
 
 * Clone this repository https://github.com/veromejia/med_reminder.git
-* copy the folder TaskManager that is inside of med_reminder folder to the home directory
-* go to the python file Taskmanager/job.py that now is in your home directory and replace the values of the following varialbes `account_sid = "Mytwiliosid"`, `auth_token = "MytwilioToken"`, `from_="myTwilioPhoneNumber"`, `sender="myEmail@gmail.com"`, and `password ="​myEmailPassword"` with your own credentials. 
+
+* Copy the folder TaskManager that is inside of med_reminder folder to the home directory
+
+* Go to the python file Taskmanager/job.py that now is in your home directory and replace the values of the following varialbes `account_sid = "Mytwiliosid"`, `auth_token = "MytwilioToken"`, `from_="myTwilioPhoneNumber"`, `sender="myEmail@gmail.com"`, and `password ="​myEmailPassword"` with your own credentials. 
 
 ## Testing
 
 #### 1- Run the Cron jobs
-* go to the directory TaskManager that previously was copied in your home directory and run the python file setup.py
+* Go to the directory TaskManager that previously was copied in your home directory and run the python file setup.py
 
     `ex:`
+
     `~/TaskManager$ ./setup.py`
-    `The following cron's were created:`
-    `python3 /home/vero/TaskManager/taskmanager.py # medr-taskmanager`
+
+        The following cron's were created:`
+        python3 /home/vero/TaskManager/taskmanager.py # medr-taskmanager
 
     This script will create the crons that will be run every minute to check if there are active tasks to send a reminder
 
@@ -56,16 +66,18 @@ _after installing the above mentioned requirements_
 * Go to the folder MedReminder and run the following command `env FLASK_APP = app.py flask `
 
     `ex:`
+
     `~/med_reminder$ env FLASK_APP = app.py flask`
-    `Serving Flask app "app"`
-    `Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
+
+        Serving Flask app "app"
+        Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
 #### 3- go to your favorite browser and type `localhost:5000` or `127.0.0.1:5000` to test this web application
 
 ## Demo Features
 <img src="https://github.com/veromejia/med_reminder/blob/master/Images/landing%20page.png" height="70%" width="70%" />
 
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/About%20us.png"height="70%" width="70%" />
+<img src="https://github.com/veromejia/med_reminder/blob/master/Images/About%20us.png" height="70%" width="70%" />
 
 <img src="https://github.com/veromejia/med_reminder/blob/master/Images/features.png" height="70%" width="70%" />
 
@@ -74,8 +86,6 @@ _after installing the above mentioned requirements_
 <img src="https://github.com/veromejia/med_reminder/blob/master/Images/Recipient%20info.png" height="70%" width="70%"/>
 
 <img src="https://github.com/veromejia/med_reminder/blob/master/Images/Reminder%20info.png" height="70%" width="70%"/>
-
-<img src="https://github.com/veromejia/med_reminder/blob/master/Images/Dashboard%20record.png" height="70%" width="70%"/>
 
 
 ## Authors
