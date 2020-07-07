@@ -46,7 +46,7 @@ You should also install the following tools
 `$ pip install twilio`
 
 
-## Configuration
+### Configuration
 
 After installing the above mentioned requirements_
 
